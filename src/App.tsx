@@ -400,6 +400,67 @@ function App() {
           </section>
         )}
 
+        {view === 'form' && (
+          <section className="fade-in">
+            <button
+              onClick={() => setView('home')}
+              style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '5px' }}
+            >
+              ← Cancelar
+            </button>
+            <h2 style={{ marginBottom: '2rem' }}>Formulario de Contacto y Reportes</h2>
+            <form className="glass" style={{ padding: '2rem', borderRadius: '12px' }} onSubmit={(e) => {
+              e.preventDefault();
+              alert('Reporte enviado con éxito. Nuestro equipo se pondrá en contacto pronto.');
+              setView('home');
+            }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div className="form-group">
+                  <label>Nombre Completo</label>
+                  <input type="text" className="form-control" required placeholder="Ej. Juan Pérez" />
+                </div>
+                <div className="form-group">
+                  <label>Correo Electrónico</label>
+                  <input type="email" className="form-control" required placeholder="juan@empresa.com" />
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Tipo de Incidencia</label>
+                <select className="form-control">
+                  <option>Hardware / Equipos</option>
+                  <option>Software / Aplicaciones</option>
+                  <option>Conectividad / Red</option>
+                  <option>Accesos / Contraseñas</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Asunto</label>
+                <input type="text" className="form-control" required placeholder="Breve descripción del problema" />
+              </div>
+              <div className="form-group">
+                <label>Descripción Detallada</label>
+                <textarea className="form-control" required placeholder="Describe los síntomas y lo que has intentado hasta ahora..."></textarea>
+              </div>
+              <div className="form-group">
+                <label>Nivel de Urgencia</label>
+                <div style={{ display: 'flex', gap: '15px' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}>
+                    <input type="radio" name="urgency" value="Bajo" defaultChecked /> Bajo
+                  </label>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}>
+                    <input type="radio" name="urgency" value="Medio" /> Medio
+                  </label>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}>
+                    <input type="radio" name="urgency" value="Alto" /> Alto
+                  </label>
+                </div>
+              </div>
+              <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '1rem' }}>Enviar Reporte</button>
+            </form>
+          </section>
+        )}
+
         {view === 'chat' && (
           <div className="fade-in">
             <h2 style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
