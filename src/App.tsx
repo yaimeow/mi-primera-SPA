@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
-import { Search, Book, PenTool as Tool, MessageSquare, AlertCircle, Clock, CheckCircle2, PhoneCall, ChevronRight } from 'lucide-react';
+import { Search, Book, PenTool as Tool, MessageSquare, AlertCircle, Clock, CheckCircle2, PhoneCall, ChevronRight, Shield, Database, ClipboardCheck, Target, Cpu, Send } from 'lucide-react';
 import { ARTICLES, CATEGORIES, type Article } from './data';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [view, setView] = useState<'home' | 'article' | 'form'>('home');
+  const [view, setView] = useState<'home' | 'article' | 'form' | 'about' | 'chat' | 'legal' | 'survey' | 'data-management'>('home');
   const [currentArticle, setCurrentArticle] = useState<Article | null>(null);
 
   const filteredArticles = useMemo(() => {
@@ -35,7 +35,7 @@ function App() {
       <aside className="sidebar glass">
         <div style={{ marginBottom: '2rem' }} onClick={resetFilters} className="cursor-pointer">
           <h2 className="gradient-text" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>NEXTGEN-TI</h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Base de Conocimiento Técnica</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Base de Conocimiento Centralizada con IA</p>
         </div>
 
         <nav>
@@ -68,6 +68,40 @@ function App() {
                 {cat}
               </li>
             ))}
+          </ul>
+
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '1px', margin: '2rem 0 1rem 0' }}>Institucional</p>
+          <ul style={{ listStyle: 'none' }}>
+            <li
+              className={`sidebar-link ${view === 'about' ? 'active' : ''}`}
+              onClick={() => setView('about')}
+            >
+              <Target size={18} /> Identidad
+            </li>
+            <li
+              className={`sidebar-link ${view === 'data-management' ? 'active' : ''}`}
+              onClick={() => setView('data-management')}
+            >
+              <Database size={18} /> Gestión de Datos
+            </li>
+            <li
+              className={`sidebar-link ${view === 'legal' ? 'active' : ''}`}
+              onClick={() => setView('legal')}
+            >
+              <Shield size={18} /> Sustento Legal
+            </li>
+            <li
+              className={`sidebar-link ${view === 'chat' ? 'active' : ''}`}
+              onClick={() => setView('chat')}
+            >
+              <Cpu size={18} /> Asistente IA
+            </li>
+            <li
+              className={`sidebar-link ${view === 'survey' ? 'active' : ''}`}
+              onClick={() => setView('survey')}
+            >
+              <ClipboardCheck size={18} /> Encuesta
+            </li>
           </ul>
 
           <div style={{ marginTop: '2rem' }}>
@@ -233,65 +267,146 @@ function App() {
           </article>
         )}
 
-        {view === 'form' && (
+        {view === 'about' && (
           <section className="fade-in">
-            <button
-              onClick={() => setView('home')}
-              style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '5px' }}
-            >
-              ← Cancelar
-            </button>
-            <h2 style={{ marginBottom: '2rem' }}>Formulario de Contacto y Reportes</h2>
-            <form className="glass" style={{ padding: '2rem', borderRadius: '12px' }} onSubmit={(e) => {
-              e.preventDefault();
-              alert('Reporte enviado con éxito. Nuestro equipo se pondrá en contacto pronto.');
-              setView('home');
-            }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                <div className="form-group">
-                  <label>Nombre Completo</label>
-                  <input type="text" className="form-control" required placeholder="Ej. Juan Pérez" />
-                </div>
-                <div className="form-group">
-                  <label>Correo Electrónico</label>
-                  <input type="email" className="form-control" required placeholder="juan@empresa.com" />
-                </div>
+            <h2 style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Target className="gradient-text" /> Identidad Corporativa
+            </h2>
+            <div style={{ display: 'grid', gap: '30px' }}>
+              <div className="glass" style={{ padding: '2rem', borderRadius: '16px' }}>
+                <h3 style={{ color: 'var(--accent-primary)', marginBottom: '1rem' }}>Misión</h3>
+                <p style={{ lineHeight: '1.8', fontSize: '1.1rem' }}>
+                  Nuestra misión es transformar la gestión tecnológica institucional mediante soluciones de vanguardia basadas en Inteligencia Artificial y automatización, garantizando un soporte técnico eficiente, transparente y centrado en la continuidad operativa.
+                </p>
               </div>
-              <div className="form-group">
-                <label>Tipo de Incidencia</label>
-                <select className="form-control">
-                  <option>Hardware / Equipos</option>
-                  <option>Software / Aplicaciones</option>
-                  <option>Conectividad / Red</option>
-                  <option>Accesos / Contraseñas</option>
-                  <option>Otro</option>
-                </select>
+              <div className="glass" style={{ padding: '2rem', borderRadius: '16px' }}>
+                <h3 style={{ color: 'var(--accent-primary)', marginBottom: '1rem' }}>Visión</h3>
+                <p style={{ lineHeight: '1.8', fontSize: '1.1rem' }}>
+                  Ser el referente nacional en innovación tecnológica para la gestión pública, liderando la transición hacia un entorno digital inteligente donde los datos se conviertan en decisiones estratégicas que beneficien a toda la población.
+                </p>
               </div>
-              <div className="form-group">
-                <label>Asunto</label>
-                <input type="text" className="form-control" required placeholder="Breve descripción del problema" />
-              </div>
-              <div className="form-group">
-                <label>Descripción Detallada</label>
-                <textarea className="form-control" required placeholder="Describe los síntomas y lo que has intentado hasta ahora..."></textarea>
-              </div>
-              <div className="form-group">
-                <label>Nivel de Urgencia</label>
-                <div style={{ display: 'flex', gap: '15px' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}>
-                    <input type="radio" name="urgency" value="Bajo" defaultChecked /> Bajo
-                  </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}>
-                    <input type="radio" name="urgency" value="Medio" /> Medio
-                  </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}>
-                    <input type="radio" name="urgency" value="Alto" /> Alto
-                  </label>
+              <div className="glass" style={{ padding: '2rem', borderRadius: '16px' }}>
+                <h3 style={{ color: 'var(--accent-primary)', marginBottom: '1rem' }}>Valores Nucleares</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginTop: '1rem' }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <div className="gradient-text" style={{ fontSize: '1.5rem', fontWeight: 800 }}>Innovación</div>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Evolución constante a través de la IA.</p>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div className="gradient-text" style={{ fontSize: '1.5rem', fontWeight: 800 }}>Ética</div>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Integridad y responsabilidad en el manejo de datos.</p>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div className="gradient-text" style={{ fontSize: '1.5rem', fontWeight: 800 }}>Inclusión</div>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Tecnología accesible para todos los ciudadanos.</p>
+                  </div>
                 </div>
               </div>
-              <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '1rem' }}>Enviar Reporte</button>
-            </form>
+            </div>
           </section>
+        )}
+
+        {view === 'data-management' && (
+          <section className="fade-in">
+            <h2 style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Database className="gradient-text" /> Optimización de Gestión de Datos
+            </h2>
+            <div className="glass" style={{ padding: '2rem', borderRadius: '16px', marginBottom: '2rem' }}>
+              <h3 style={{ marginBottom: '1rem' }}>Superando la "Gestión Manual"</h3>
+              <p style={{ lineHeight: '1.7', marginBottom: '1.5rem' }}>
+                En nuestro diagnóstico inicial, identificamos la <strong>gestión manual de datos</strong> como el cuello de botella crítico para la eficiencia institucional. El procesamiento de reportes en físico, la duplicidad de información y la lenta respuesta técnica eran consecuencias directas de este método obsoleto.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div style={{ border: '1px solid rgba(255, 77, 77, 0.3)', padding: '1.5rem', borderRadius: '12px', background: 'rgba(255, 77, 77, 0.05)' }}>
+                  <h4 style={{ color: '#ff4d4d', marginBottom: '0.5rem' }}>Antes (Manual)</h4>
+                  <ul style={{ fontSize: '0.9rem', paddingLeft: '1.2rem', color: 'var(--text-secondary)' }}>
+                    <li>Respuesta tardía {'>'}48h</li>
+                    <li>Pérdida de trazabilidad</li>
+                    <li>Errores de transcripción humana</li>
+                    <li>Dependencia de personal físico</li>
+                  </ul>
+                </div>
+                <div style={{ border: '1px solid rgba(56, 189, 248, 0.3)', padding: '1.5rem', borderRadius: '12px', background: 'rgba(56, 189, 248, 0.05)' }}>
+                  <h4 style={{ color: 'var(--accent-primary)', marginBottom: '0.5rem' }}>Ahora (Automatizado)</h4>
+                  <ul style={{ fontSize: '0.9rem', paddingLeft: '1.2rem', color: 'var(--text-secondary)' }}>
+                    <li>Respuesta instantánea vía IA</li>
+                    <li>Centralización en tiempo real</li>
+                    <li>Validación automática de datos</li>
+                    <li>Escalabilidad ilimitada</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {view === 'legal' && (
+          <section className="fade-in">
+            <h2 style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Shield className="gradient-text" /> Sustento Legal y Privacidad
+            </h2>
+            <div style={{ display: 'grid', gap: '30px' }}>
+              <div className="glass" style={{ padding: '2rem', borderRadius: '16px' }}>
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'center', marginBottom: '1.5rem' }}>
+                  <div style={{ padding: '15px', background: 'rgba(56, 189, 248, 0.1)', borderRadius: '12px' }}>
+                    <Shield color="var(--accent-primary)" size={32} />
+                  </div>
+                  <div>
+                    <h3 style={{ margin: 0 }}>Cumplimiento Normativo</h3>
+                    <p style={{ color: 'var(--text-secondary)', margin: 0 }}>Garantía de seguridad y transparencia</p>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                  <div>
+                    <h4 style={{ color: 'var(--accent-primary)', marginBottom: '0.5rem' }}>Ley de Infogobierno</h4>
+                    <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
+                      Nuestra plataforma cumple rigurosamente con los estándares de interoperabilidad y uso de tecnologías libres establecidos en la Ley de Infogobierno, facilitando la transparencia administrativa y la eficiencia del Estado.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 style={{ color: 'var(--accent-primary)', marginBottom: '0.5rem' }}>Artículo 28 - Constitución Nacional</h4>
+                    <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
+                      Garantizamos el derecho constitucional de toda persona a acceder a la información que de sí misma o de sus bienes conste en registros oficiales, implementando protocolos de cifrado y protección de datos personales de nivel bancario.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {view === 'survey' && (
+          <section className="fade-in" style={{ textAlign: 'center', paddingTop: '3rem' }}>
+            <ClipboardCheck size={64} className="gradient-text" style={{ marginBottom: '2rem' }} />
+            <h2 style={{ marginBottom: '1rem' }}>Encuesta de Diagnóstico Tecnológico</h2>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 2rem auto', fontSize: '1.1rem' }}>
+              Estamos recolectando datos reales de la población para mejorar continuamente nuestra infraestructura. Tu opinión es fundamental para la evolución de los servicios digitales.
+            </p>
+            <div className="glass" style={{ padding: '3rem', borderRadius: '24px', maxWidth: '500px', margin: '0 auto' }}>
+              <h3 style={{ marginBottom: '1.5rem' }}>Contribuir con Datos Reales</h3>
+              <a
+                href="https://forms.gle/ejemplo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+                style={{ textDecoration: 'none', display: 'inline-block', fontSize: '1.1rem', padding: '15px 40px' }}
+              >
+                Iniciar Encuesta
+              </a>
+              <p style={{ marginTop: '1.5rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                * Los datos son tratados de forma anónima para fines estadísticos.
+              </p>
+            </div>
+          </section>
+        )}
+
+        {view === 'chat' && (
+          <div className="fade-in">
+            <h2 style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Cpu className="gradient-text" /> Asistente IA Generativa (Simulador)
+            </h2>
+            <ChatSimulator />
+          </div>
         )}
       </main>
 
@@ -302,6 +417,68 @@ function App() {
           color: var(--text-primary) !important;
         }
       `}</style>
+    </div>
+  );
+}
+
+function ChatSimulator() {
+  const [messages, setMessages] = useState([
+    { role: 'bot', content: '¡Hola! Soy el asistente inteligente de NEXTGEN-TI. ¿En qué puedo ayudarte hoy con la gestión de infraestructura o reportes?' }
+  ]);
+  const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+
+  const handleSend = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const userMessage = { role: 'user', content: input };
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
+    setIsTyping(true);
+
+    // Simulated Bot Responses
+    setTimeout(() => {
+      let botResponse = '';
+      const text = input.toLowerCase();
+
+      if (text.includes('hola') || text.includes('buenos')) {
+        botResponse = '¡Hola! Estoy listo para optimizar tus procesos. ¿Deseas saber cómo eliminamos la gestión manual de datos?';
+      } else if (text.includes('manual') || text.includes('datos')) {
+        botResponse = 'Nuestra plataforma utiliza modelos LLM para categorizar automáticamente los reportes, eliminando el procesamiento manual en un 95%.';
+      } else if (text.includes('legal') || text.includes('ley')) {
+        botResponse = 'Cumplimos con la Ley de Infogobierno y el Art. 28 de la Constitución para proteger toda la información procesada.';
+      } else {
+        botResponse = 'Entiendo tu consulta. Como IA generativa, puedo ayudarte a redactar reportes técnicos, priorizar incidencias o consultar el marco legal vigente.';
+      }
+
+      setMessages(prev => [...prev, { role: 'bot', content: botResponse }]);
+      setIsTyping(false);
+    }, 1500);
+  };
+
+  return (
+    <div className="glass chat-container">
+      <div className="chat-messages">
+        {messages.map((msg, i) => (
+          <div key={i} className={`message ${msg.role}`}>
+            {msg.content}
+          </div>
+        ))}
+        {isTyping && <div className="message bot" style={{ fontStyle: 'italic', opacity: 0.7 }}>La IA está procesando...</div>}
+      </div>
+      <form className="chat-input-area" onSubmit={handleSend}>
+        <input
+          type="text"
+          className="chat-input"
+          placeholder="Escribe tu consulta aquí..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button type="submit" className="btn-primary" style={{ padding: '8px 15px' }}>
+          <Send size={18} />
+        </button>
+      </form>
     </div>
   );
 }
