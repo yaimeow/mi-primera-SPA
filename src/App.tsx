@@ -34,7 +34,7 @@ function App() {
       {/* Sidebar */}
       <aside className="sidebar glass">
         <div style={{ marginBottom: '2rem' }} onClick={resetFilters} className="cursor-pointer">
-          <h2 className="gradient-text" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>NEXTGEN-TI</h2>
+          <h2 className="gradient-text" style={{ fontSize: '1.2rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>NextGen TI - Soluciones de IA para la Gestión Operativa</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Base de Conocimiento Centralizada con IA</p>
         </div>
 
@@ -82,7 +82,7 @@ function App() {
               className={`sidebar-link ${view === 'data-management' ? 'active' : ''}`}
               onClick={() => setView('data-management')}
             >
-              <Database size={18} /> Gestión de Datos
+              <Database size={18} /> Diagnóstico
             </li>
             <li
               className={`sidebar-link ${view === 'legal' ? 'active' : ''}`}
@@ -282,7 +282,7 @@ function App() {
               <div className="glass" style={{ padding: '2rem', borderRadius: '16px' }}>
                 <h3 style={{ color: 'var(--accent-primary)', marginBottom: '1rem' }}>Visión</h3>
                 <p style={{ lineHeight: '1.8', fontSize: '1.1rem' }}>
-                  Ser el referente nacional en innovación tecnológica para la gestión pública, liderando la transición hacia un entorno digital inteligente donde los datos se conviertan en decisiones estratégicas que beneficien a toda la población.
+                  Ser el referente nacional e internacional en innovación tecnológica basada en Inteligencia Artificial para el año 2030, liderando la transición de las instituciones venezolanas hacia un entorno digital inteligente que optimice la gestión pública y operativa.
                 </p>
               </div>
               <div className="glass" style={{ padding: '2rem', borderRadius: '16px' }}>
@@ -309,12 +309,16 @@ function App() {
         {view === 'data-management' && (
           <section className="fade-in">
             <h2 style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Database className="gradient-text" /> Optimización de Gestión de Datos
+              <Database className="gradient-text" /> Diagnóstico Tecnológico
             </h2>
             <div className="glass" style={{ padding: '2rem', borderRadius: '16px', marginBottom: '2rem' }}>
-              <h3 style={{ marginBottom: '1rem' }}>Superando la "Gestión Manual"</h3>
+              <h3 style={{ marginBottom: '1rem' }}>Sustentación del Problema en Venezuela</h3>
               <p style={{ lineHeight: '1.7', marginBottom: '1.5rem' }}>
-                En nuestro diagnóstico inicial, identificamos la <strong>gestión manual de datos</strong> como el cuello de botella crítico para la eficiencia institucional. El procesamiento de reportes en físico, la duplicidad de información y la lenta respuesta técnica eran consecuencias directas de este método obsoleto.
+                Nuestra investigación en el contexto venezolano ha identificado que la <strong>gestión manual y la fragmentación de datos</strong> son los principales obstáculos para la eficiencia operativa. El uso extensivo de procesos basados en papel y sistemas desconectados genera retrasos críticos en la atención y resolución de incidencias.
+              </p>
+              <h4 style={{ marginBottom: '1rem', color: 'var(--accent-primary)' }}>Impacto de la Inteligencia Artificial</h4>
+              <p style={{ lineHeight: '1.7', marginBottom: '1.5rem' }}>
+                La IA de NextGen TI aborda este problema mediante el procesamiento de lenguaje natural (NLP) y el aprendizaje automático, permitiendo que sistemas manuales ineficientes se transformen en flujos de trabajo inteligentes que automatizan la clasificación, prioridad y solución de requerimientos técnicos sin intervención humana constante.
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div style={{ border: '1px solid rgba(255, 77, 77, 0.3)', padding: '1.5rem', borderRadius: '12px', background: 'rgba(255, 77, 77, 0.05)' }}>
@@ -343,7 +347,7 @@ function App() {
         {view === 'legal' && (
           <section className="fade-in">
             <h2 style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Shield className="gradient-text" /> Sustento Legal y Privacidad
+              <Shield className="gradient-text" /> Ética, Seguridad y Sustento Legal
             </h2>
             <div style={{ display: 'grid', gap: '30px' }}>
               <div className="glass" style={{ padding: '2rem', borderRadius: '16px' }}>
@@ -352,8 +356,8 @@ function App() {
                     <Shield color="var(--accent-primary)" size={32} />
                   </div>
                   <div>
-                    <h3 style={{ margin: 0 }}>Cumplimiento Normativo</h3>
-                    <p style={{ color: 'var(--text-secondary)', margin: 0 }}>Garantía de seguridad y transparencia</p>
+                    <h3 style={{ margin: 0 }}>Compromiso con la Ética de Datos</h3>
+                    <p style={{ color: 'var(--text-secondary)', margin: 0 }}>Garantía de seguridad y transparencia institucional</p>
                   </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -464,7 +468,7 @@ function App() {
         {view === 'chat' && (
           <div className="fade-in">
             <h2 style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Cpu className="gradient-text" /> Asistente IA Generativa (Simulador)
+              <Cpu className="gradient-text" /> Chatbot de Soporte Técnico (Prototipo Virtual)
             </h2>
             <ChatSimulator />
           </div>
@@ -484,7 +488,7 @@ function App() {
 
 function ChatSimulator() {
   const [messages, setMessages] = useState([
-    { role: 'bot', content: '¡Hola! Soy el asistente inteligente de NEXTGEN-TI. ¿En qué puedo ayudarte hoy con la gestión de infraestructura o reportes?' }
+    { role: 'bot', content: '¡Hola! Bienvenid@ al Chatbot de Soporte Técnico de NextGen TI. Estoy aquí para asistirte con incidencias tecnológicas y consultas sobre nuestra gestión operativa mediante IA. ¿En qué puedo ayudarte?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -504,13 +508,15 @@ function ChatSimulator() {
       const text = input.toLowerCase();
 
       if (text.includes('hola') || text.includes('buenos')) {
-        botResponse = '¡Hola! Estoy listo para optimizar tus procesos. ¿Deseas saber cómo eliminamos la gestión manual de datos?';
-      } else if (text.includes('manual') || text.includes('datos')) {
-        botResponse = 'Nuestra plataforma utiliza modelos LLM para categorizar automáticamente los reportes, eliminando el procesamiento manual en un 95%.';
-      } else if (text.includes('legal') || text.includes('ley')) {
-        botResponse = 'Cumplimos con la Ley de Infogobierno y el Art. 28 de la Constitución para proteger toda la información procesada.';
+        botResponse = '¡Hola! Como prototipo de soporte técnico, estoy diseñado para optimizar los procesos en Venezuela. ¿Tienes algún problema con tu equipo o deseas conocer nuestro diagnóstico tecnológico?';
+      } else if (text.includes('manual') || text.includes('datos') || text.includes('diagnóstico')) {
+        botResponse = 'Nuestro diagnóstico revela que la gestión manual en Venezuela es ineficiente. NextGen TI utiliza IA para automatizar estos procesos, reduciendo tiempos de espera en un 90%.';
+      } else if (text.includes('legal') || text.includes('ley') || text.includes('ética')) {
+        botResponse = 'Operamos bajo estrictos estándares éticos, cumpliendo con la Ley de Infogobierno y el Art. 28 de la Constitución sobre protección de datos.';
+      } else if (text.includes('2030') || text.includes('visión')) {
+        botResponse = 'Nuestra visión es ser el referente líder en IA para el año 2030, transformando la infraestructura digital del país.';
       } else {
-        botResponse = 'Entiendo tu consulta. Como IA generativa, puedo ayudarte a redactar reportes técnicos, priorizar incidencias o consultar el marco legal vigente.';
+        botResponse = 'Entiendo. Puedo ayudarte a categorizar una falla técnica o explicarte cómo nuestra IA soluciona los problemas de gestión manual identificados en el país.';
       }
 
       setMessages(prev => [...prev, { role: 'bot', content: botResponse }]);
