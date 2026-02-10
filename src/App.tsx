@@ -34,7 +34,7 @@ function App() {
       {/* Sidebar */}
       <aside className="sidebar glass">
         <div style={{ marginBottom: '2rem' }} onClick={resetFilters} className="cursor-pointer">
-          <h2 className="gradient-text" style={{ fontSize: '1.2rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>NextGen TI - Soluciones de IA para la Gestión Operativa</h2>
+          <h2 className="gradient-text" style={{ fontSize: '1.2rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>NextGen TI -</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Base de Conocimiento Centralizada con IA</p>
         </div>
 
